@@ -1,27 +1,27 @@
-<div class="right controls"><%= link_to "New Forum Category", new_category_path if can? :create, Category %></div>
+<div class="right controls"><%= link_to "新增栏目", new_category_path if can? :create, Category %></div>
 
 <% @categories.each do |category| %>
   <div class="module">
     <div class="module_header">
       <%= category.title %>
       <span class="controls right smaller">
-        <%= link_to "New Forum", new_forum_path if can? :create, Forum %>
-        <%= link_to "Edit Category", edit_category_path(category) if can? :manage, category %>
-        <%= link_to "Delete Category", category_path(category), :confirm => "Are you sure you want to delete this category?", :method => :delete if can? :manage, category %>
+        <%= link_to "新增版块", new_forum_path if can? :create, Forum %>
+        <%= link_to "修改栏目", edit_category_path(category) if can? :manage, category %>
+        <%= link_to "删除栏目", category_path(category), :confirm => "确定删除此栏目?", :method => :delete if can? :manage, category %>
       </span>
     </div>
     <% if category.forums.size > 0 %>
     <div>
       <table>
         <tr class="smaller">
-          <th colspan="2" align="left">Forum</th>
-          <th>Topics</th>
-          <th>Posts</th>
-          <th class="last_post" align="left">Last Post</th>
+          <th colspan="2" align="left">版块</th>
+          <th>主题</th>
+          <th>帖子</th>
+          <th class="last_post" align="left">最近发表</th>
         </tr>
         <% category.forums.each do |forum| %>
         <tr>
-          <td class="icon"><%= image_tag 'ruby.png' %></td>
+          <td class="icon"><%= image_tag 'logo.png' %></td>
           <td class="description">
             <%= link_to forum.title, forum_path(forum) %><br />
             <span class="smaller"><%= forum.description %></span><br />
@@ -33,7 +33,7 @@
               <%=l forum.posts.last.created_at %><br />
               <%= forum.posts.last.user.username %>
             <% else %>
-              No Topics / Posts
+              没有文章
             <% end %>
           </td>
         </tr>
@@ -41,7 +41,7 @@
       </table>
     </div>
     <% else %>
-      <div class="module_body">There are currently no forums.</div>
+      <div class="module_body">没有版块</div>
     <% end %>
   </div>
 <% end %>

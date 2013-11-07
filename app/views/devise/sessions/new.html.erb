@@ -19,19 +19,13 @@
 
 <div class="module" style="padding:15px 25px 0px 25px;">
   <div style="float:left; width:50%; height:210px; padding-right:10px;">
-    <h1>Welcome to Forum Monster</h1>
-    <p>
-      Forum Monster is a simple forum generator written in rails 3. The goal of Forum Monster, is to provide a simple, and easy to setup forum application without having to dictate how your site it setup.
-      <p>You can login with the following information:</p>
-      <p><strong>Admin Demo:</strong> admin/forum_admin</p>
-      <p><strong>User Demo:</strong> user/forum_user</p>
-    </p>
+    <h1> 欢迎来到元法论坛</h1>
   </div>
   <div style="float:right; width:45%; height:195px; padding-left:30px; border-left:1px solid #e2e2e2;">
     <%= form_for("user", :url => user_session_path) do |f| %>
-      <p><%= f.text_field :username , :value => "username", :style => "font-size:2.2em;" %></p>
-      <p><%= f.password_field :password, :value => "password", :style => "font-size:2.2em" %></p>
-      <%= f.submit 'Sign in' %>
+      <p><%= f.text_field :username , :label =>"用户名", :style => "font-size:2.2em;" %></p>
+      <p><%= f.password_field :password, :label => "密码", :style => "font-size:2.2em" %></p>
+      <%= f.submit '登录' %>
     <% end %>
   </div>
   <div class="clear"></div>

@@ -16,7 +16,10 @@ test:
   timeout: 5000
 
 production:
-  adapter: sqlite3
-  database: db/production.sqlite3
+  adapter: mysql2
+  host: 127.0.0.1
+  database: yforum_pro
   pool: 5
+  username: root
+  password: mnhuikj
   timeout: 5000

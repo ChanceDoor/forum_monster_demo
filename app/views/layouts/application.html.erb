@@ -1,41 +1,40 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title><%= content_for?(:title) ? yield(:title) : "Untitled" %></title>
+    <title><%= content_for?(:title) ? yield(:title) : "元法论坛" %></title>
+    <%= render 'layouts/seo'%>
     <%= stylesheet_link_tag "application", "forum-monster" %>
     <%= javascript_include_tag :defaults %>
     <%= csrf_meta_tag %>
     <%= yield(:head) %>
   </head>
   <body>
-    <a href="https://github.com/gitt/forum_monster"><img style="position: absolute; top: 0; left: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_left_red_aa0000.png" alt="Fork me on GitHub"></a>
-
-    <div class="container">
+    <div class="container" style="display:none">
       <%= content_tag :div, "This is just a demo, the database is reset every 24 hours.", :class => "demo_notice" %>
     </div>
 
     <div id="header">
       <div id="logo">
-        <%= image_tag "rails.png" %>
-        <h1>Forum Monster</h1>
-        A Ruby on Rails Forum Gem
+        <%= image_tag "logo.png" %>
+        <h1>元法论坛</h1>
+        畅谈文化与思想
         <div class="clear"></div>
       </div>
       <div id="menu_wrapper">
         <ul>
-          <li><%= link_to "Forum Index", root_path %></li>
+          <li><%= link_to "论坛首页", root_path %></li>
           <% if user_signed_in? %>
-            <li><%= link_to "Logout", destroy_user_session_path, :method => :delete %></li>
+            <li><%= link_to "登出", destroy_user_session_path, :method => :delete %></li>
           <% else %>
-            <li><%= link_to "Login", new_user_session_path %></li>
+            <li><%= link_to "登录", new_user_session_path %></li>
           <% end %>
         </ul>
       </div>
       <div id="bottom">
         <% if user_signed_in? %>
-          Welcome <strong><%= current_user.username %></strong>, your last login was <%= time_ago_in_words(current_user.last_sign_in_at) %> ago
+          欢迎 <strong><%= current_user.username %></strong>, 您在 <%= time_ago_in_words(current_user.last_sign_in_at) %> 之前登录过。
         <% else %>
-          You are not logged in. Please <%= link_to "login", new_user_session_path %> or <%= link_to "register", new_user_registration_path %>
+          你没有登录，请 <%= link_to "登录", new_user_session_path %> 或 <%= link_to "注册", new_user_registration_path %>
         <% end %>
       </div>
     </div>
@@ -49,8 +48,8 @@
 
     <div id="info_box">
       <p>
-        Total number of registered users: <strong><%= User.count %></strong><br />
-        Newest registered user: <%= link_to User.last.username unless User.last.nil? %>
+        注册用户数: <strong><%= User.count %></strong><br />
+        最新注册用户: <%= link_to User.last.username unless User.last.nil? %>
       </p>
     </div>
 
